@@ -29,6 +29,12 @@ RUN php -r "unlink('composer-setup.php');"
 # グローバルに使うため「composer.phar」を「/usr/local/bin/」の直下に移動させる
 RUN mv composer.phar /usr/local/bin/composer
 
+# 不要なファイルを削除
+RUN rm -rf /var/www/html
+
+# Redis用のセットアップ
+RUN composer require predis/predis
+
 #■ systemdを経由せずhttpdを直接起動する
 #参考URL:https://blog.takekoshi.net/docker-centos7-httpd/
 CMD ["/usr/sbin/httpd", "-DFOREGROUND"]
