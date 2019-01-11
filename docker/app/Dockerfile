@@ -6,6 +6,7 @@ RUN yum install -y sudo
 RUN yum install -y vim
 RUN yum install -y which
 RUN yum install -y git
+RUN yum install -y curl
 
 # EPELインストール
 RUN yum -y install epel-release
@@ -35,7 +36,12 @@ RUN rm -rf /var/www/html
 # Redis用のセットアップ
 RUN composer require predis/predis
 
-#■ systemdを経由せずhttpdを直接起動する
+# Nodejsインストール
+RUN curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+RUN sudo yum install -y nodejs
+RUN npm install
+
+#■ systemdを経由せずhttpdを直接起動する(イメージ起動の時に実行されるコマンド)
 #参考URL:https://blog.takekoshi.net/docker-centos7-httpd/
 CMD ["/usr/sbin/httpd", "-DFOREGROUND"]
 

@@ -7,6 +7,7 @@ services:
         volumes:
             - ./:/var/www/project
             - ./docker/apache/apache.conf:/etc/httpd/conf/httpd.conf
+            - ./docker/npm/hot:/var/www/project/public/hot
         ports:
             - 3322:80
         tty: true
