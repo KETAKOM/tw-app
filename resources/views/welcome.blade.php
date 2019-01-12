@@ -97,6 +97,6 @@
         <div id="app">
             <example-component></example-component>
         </div>
-        <script lang="ts" src="{{ mix('js/app.js') }}"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>
