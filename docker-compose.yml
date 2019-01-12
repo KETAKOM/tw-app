@@ -37,6 +37,12 @@ services:
         # redisの永続化
         # コンフィグを書き換えた状態でredisを起動する
         command: redis-server /usr/local/etc/redis/redis.conf --appendonly yes
+    smtp:
+        build: ./docker/smtp
+        container_name: smtp
+        ports:
+            - 1080:1080
+            - 1025:1025
 
 volumes:
     mysql:
