@@ -27,14 +27,13 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
-        $posts = $this->post_repository->getPostsByUserId($user->id);
-
+        $posts = $this->post_repository->getFollowPostsByUserId($user->id);
         $user = [
             'user_id' => $user->id,
             'user_name' => $user->name
         ];
 
-        return view('layouts.app')->with([
+        return view('contents.top')->with([
             'user' => $user,
             'posts' => $posts,
         ]);

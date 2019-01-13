@@ -32,6 +32,25 @@ class PostRepository implements PostRepositoryInterface
     }
 
     /**
+     * ユーザーIDからフォローしている人と自分の呟きを時系列で取得
+     *
+     * @var string $userId
+     * @return object
+     */
+    public function getFollowPostsByUserId($userId)
+    {
+        return $this->post
+            ->join('users', 'users.id', '=','posts.user_id')
+            ->join('follows', 'follows.to_follow_user_id', '=','users.id')
+            ->select('posts.*', 'users.name as user_name')
+            ->where('follows.from_follow_user_id', '=', $userId)
+            ->orWhere('posts.user_id', '=', $userId)
+            ->orderBy('posts.created_at', 'DESC')
+            ->limit(20)
+            ->get();
+    }
+
+    /**
      * 呟きの作成
      *
      * @var string $userId

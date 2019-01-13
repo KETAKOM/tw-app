@@ -27,8 +27,7 @@ class PostController extends Controller
     public function get(Request $request)
     {
         $userId = $request->user_id;
-        $posts = $this->post_repository->getPostsByUserId($userId);
-        
+        $posts = $this->post_repository->getFollowPostsByUserId($userId);
         return $posts;
     }
 
