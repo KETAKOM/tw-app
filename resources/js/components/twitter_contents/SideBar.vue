@@ -1,8 +1,8 @@
 <template>
-    <div class="profile-card">
+  <div class="side-bar">
         <div class="container">
             <div class="row">
-                <div class="profilecard-container">プロフィールカード</div>
+                <div class="sidebar-container">サイドバー</div>
             </div>
         </div>
     </div>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'ProfileCard',
+  name: 'SideBar',
   data () {
     return {
 

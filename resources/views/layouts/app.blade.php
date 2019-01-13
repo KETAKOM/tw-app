@@ -72,7 +72,7 @@
         <main id="app" class="py-4">
             @yield('content')
             <!-- ルートとマッチしたコンポーネントがここへ描画されます -->
-            <router-view></router-view>
+            <router-view :posts="{{$posts}}"></router-view>
         </main>
     </div>
     <script src="{{ mix('js/app.js') }}"></script>

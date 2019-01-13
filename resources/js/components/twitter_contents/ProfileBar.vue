@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+  <div class="profile-bar container">
     <div class="row">
       <div class="profile-bar col-md-10 text-center">
         <a class="col-md-2">ツイート：500</a>

@@ -11,9 +11,8 @@ require('./bootstrap');
 import Vue from 'vue'
 // Vue-Router
 import router from './router'
-
 // Main app
 const app = new Vue({
     el: '#app',
-    router,
+    router
 });

@@ -38,11 +38,7 @@ class PostController extends Controller
      */
     public function store()
     {
-        $post = new Post();
-        $post->user_id = 1;
-        $post->parent_post_id = 1;
-        $post->text = "初めての呟き";
-        $post->save();
+        $posts = $this->post_repository->createPost();
         return "CreaatePost";
     }
 

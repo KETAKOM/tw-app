@@ -24,7 +24,7 @@ export default {
 <style>
 .jumbotron {
   height: 100%;
-  background:url(../assets/images/header.jpg) center no-repeat; 
+  /* background:url(../assets/images/header.jpg) center no-repeat;  */
   background-size:cover;
   padding-bottom: 15%;
   padding-top: 15%;

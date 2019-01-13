@@ -1,17 +1,15 @@
 <template>
     <div id="home">
         <h1>TodoContents</h1>
-        <todoList></todoList>
+        <ul>
+        <li v-for="item in posts" :key="item.id">{{item}}</li>
+        </ul>
+        <router-view name="todoList" :posts="this.posts"/>
     </div>
 </template>
 
 <script>
-import todoList from './todo_contents/TodoList.vue'
 export default {
-    el: '#home',
-    name: 'HOME',
-    components: {
-        todoList,
-    }
+    props: ['posts'],
 }
 </script>

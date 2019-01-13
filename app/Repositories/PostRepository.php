@@ -24,6 +24,27 @@ class PostRepository implements PostRepositoryInterface
      */
     public function getPostsByUserId($userId)
     {
-        return $this->post->where('user_id', '=', $userId)->first();
+        return $this->post
+            ->join('users', 'users.id', '=','posts.user_id')
+            ->select('posts.*', 'users.name as user_name')
+            ->where('user_id', '=', $userId)
+            ->get();
     }
+
+    /**
+     * 呟きの作成
+     *
+     * @var string $userId
+     * @return object
+     */
+    public function createPost()
+    {
+        $post = new Post();
+        $post->user_id = 5;
+        $post->parent_post_id = 1;
+        $post->text = "初めての呟き";
+        return $post->save();
+    }
+
+    
 }

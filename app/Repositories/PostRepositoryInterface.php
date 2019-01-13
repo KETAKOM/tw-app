@@ -11,4 +11,12 @@ interface PostRepositoryInterface
      * @return object
      */
     public function getPostsByUserId($userId);
+
+    /**
+     * 呟きの作成
+     *
+     * @var string $userId
+     * @return object
+     */
+    public function createPost();
 }

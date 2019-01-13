@@ -1,9 +1,7 @@
 <template> 
     <div id="home">
-        <h2>TwitterContents</h2>
+        <h2>MyitterContents</h2>
         <router-view name="Header"/>
-        <router-view name="ProfileHeader"/>
-        <router-view name="ProfileBar"/>
         <router-view class="main col-md-3" name="ProfileCard"/>
         <router-view class="main col-md-6" name="TwittList" :posts="this.posts"/>
         <router-view class="main col-md-3" name="SideBar"/>
