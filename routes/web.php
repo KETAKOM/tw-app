@@ -13,10 +13,10 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
-
-Route::get('/test', function(){
-    
+// この中はログインされている場合のみルーティングされる
+Route::group(['middleware' => ['auth']], function () {
+    //SPAにするので、ログインしていれば全てlayouts.appにルートを集約させる
+    Route::get('/{any}', function () {
+        return view('layouts.app');
+    })->where('any', '.*');
 });
-
-
