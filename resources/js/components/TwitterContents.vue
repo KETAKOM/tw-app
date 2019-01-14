@@ -5,7 +5,7 @@
         <router-view name="ProfileHeader"/>
         <router-view name="ProfileBar"/>
         <router-view class="main col-md-3" name="ProfileCard"/>
-        <router-view class="main col-md-6" name="TwittList" :posts="this.posts"/>
+        <router-view class="main col-md-6" name="TwittList" :user_id="this.user_id" :posts="this.posts"/>
         <router-view class="main col-md-3" name="SideBar"/>
         <div class="col-md-12 clear-bar"></div>
     </div>
@@ -13,7 +13,7 @@
 
 <script>
 export default {
-    props: ['posts'],
+    props: ['user_id', 'posts'],
 }
 </script>
 

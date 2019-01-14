@@ -1775,7 +1775,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['posts']
+  props: ['user_id', 'posts']
 });
 
 /***/ }),
@@ -1803,7 +1803,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['posts']
+  props: ['user_id', 'posts']
 });
 
 /***/ }),
@@ -2012,8 +2012,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['posts']
+  props: ['user_id', 'posts'],
+  data: function data() {
+    return {
+      call_flg: true,
+      last_flg: true,
+      page: 2
+    };
+  },
+  created: function created() {},
+  mounted: function mounted() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  methods: {
+    handleScroll: function handleScroll(event) {
+      if (this.call_flg) {
+        //ページの一番下までスクロールされた時にイベントを発火する
+        var doch = $(document).innerHeight(); //ページ全体の高さ
+
+        var winh = $(window).innerHeight(); //ウィンドウの高さ
+
+        var bottom = doch - winh; //ページ全体の高さ - ウィンドウの高さ = ページの最下部位置
+        // ページの最下部までスクロールされたら実行する
+
+        if (bottom <= $(window).scrollTop()) {
+          this.callApi();
+        }
+      }
+    },
+    callApi: function callApi() {
+      var _this = this;
+
+      this.call_flg = false;
+
+      if (this.last_flg) {
+        axios.get('/api/post/get?user_id=' + this.user_id + '&page=' + this.page).then(function (response) {
+          return _this.page++, _this.addPosts(response["data"]["posts"]["data"]);
+        });
+      }
+    },
+    addPosts: function addPosts(arr) {
+      var _this2 = this;
+
+      if (arr.length == 0) {
+        this.call_flg = true;
+        this.last_flg = false;
+      } else {
+        this.call_flg = true;
+        arr.filter(function (post) {
+          _this2.posts.push(post);
+        });
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -6384,7 +6448,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.twiit-contents{\n    height: 300px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .twiitList{\n    \n} */\n.twiitlist-container{\n    width:100%;\n}\n.twiit-contents{\n    height: 300px;\n    margin:5px 2px 5px 2px;\n}\n.twiit-header{\n    height: 30px;\n}\n.twiit-body{\n    height: 200px;\n}\n.twiit-fotter{\n    height: 70px;\n}\nul {\n    list-style: none;\n    padding-right: 40px;\n    padding-left: 40px;\n}\nul li:first-child{\n    border-top-style:solid;\n    border-top-color:lightyellow;\n    border-top-width: 2px;\n}\nli{\n    background-color: white;\n    border-bottom-style:solid;\n    border-bottom-color:lightyellow;\n    border-bottom-width: 2px;\n}\n.twiit-fotter-btn{\n    float:left;\n}\n.twiit-fotter-btn-l{\n    float:both;\n}\n", ""]);
 
 // exports
 
@@ -37770,7 +37834,7 @@ var render = function() {
       _vm._v(" "),
       _c("router-view", {
         staticClass: "main col-md-6",
-        attrs: { name: "TwittList", posts: this.posts }
+        attrs: { name: "TwittList", user_id: this.user_id, posts: this.posts }
       }),
       _vm._v(" "),
       _c("router-view", {
@@ -37824,7 +37888,7 @@ var render = function() {
       _vm._v(" "),
       _c("router-view", {
         staticClass: "main col-md-6",
-        attrs: { name: "TwittList", posts: this.posts }
+        attrs: { name: "TwittList", user_id: this.user_id, posts: this.posts }
       }),
       _vm._v(" "),
       _c("router-view", {
@@ -38098,34 +38162,78 @@ var render = function() {
         _c("div", { staticClass: "twiitlist-container" }, [
           _c(
             "ul",
-            _vm._l(_vm.posts, function(post) {
-              return _c(
-                "li",
-                { key: post.id, staticClass: "twiit-contents col-md-5" },
-                [
-                  _c("div", [
-                    _c("div", { staticClass: "twiit-header" }, [
-                      _vm._v(
-                        "\n                                " +
-                          _vm._s(post.user_name) +
-                          "\n                            "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "twiit-body" }, [
-                      _vm._v(
-                        "\n                                " +
-                          _vm._s(post.text) +
-                          "\n                            "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(0, true)
-                  ])
-                ]
-              )
-            }),
-            0
+            [
+              _vm._l(_vm.posts, function(post) {
+                return _c(
+                  "li",
+                  { key: post.id, staticClass: "twiit-contents" },
+                  [
+                    _c("div", [
+                      _c("div", { staticClass: "twiit-header" }, [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(post.user_name) +
+                            "\n                            "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "twiit-body" }, [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(post.text) +
+                            "\n                            "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(0, true)
+                    ])
+                  ]
+                )
+              }),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: !_vm.call_flg && _vm.last_flg,
+                        expression: "!call_flg&&last_flg"
+                      }
+                    ],
+                    staticClass: "loader text-center"
+                  },
+                  [
+                    _c("span", [
+                      _vm._v("Now loading" + _vm._s(_vm.page) + "......")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: !_vm.last_flg,
+                        expression: "!last_flg"
+                      }
+                    ],
+                    staticClass: "loader text-center"
+                  },
+                  [
+                    _c("span", [
+                      _vm._v("First twiit" + _vm._s(_vm.page) + "......")
+                    ])
+                  ]
+                )
+              ])
+            ],
+            2
           )
         ])
       ])
@@ -38139,37 +38247,53 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "twiit-fotter" }, [
       _c("div", [
-        _c("input", {
-          attrs: {
-            type: "button",
-            onclick: "alert('コメント')",
-            value: "コメント"
-          }
-        }),
+        _c(
+          "button",
+          {
+            staticClass: "twiit-fotter-btn btn btn-primary",
+            attrs: { onclick: "alert('コメント')" }
+          },
+          [
+            _c("i", { staticClass: "glyphicon glyphicon-search" }),
+            _vm._v("コメント\n                                    ")
+          ]
+        ),
         _vm._v(" "),
-        _c("input", {
-          attrs: {
-            type: "button",
-            onclick: "alert('リツイート')",
-            value: "リツイート"
-          }
-        }),
+        _c(
+          "button",
+          {
+            staticClass: "twiit-fotter-btn btn btn-primary",
+            attrs: { onclick: "alert('リツイート')" }
+          },
+          [
+            _c("i", { staticClass: "glyphicon glyphicon-search" }),
+            _vm._v("リツイート\n                                    ")
+          ]
+        ),
         _vm._v(" "),
-        _c("input", {
-          attrs: {
-            type: "button",
-            onclick: "alert('お気に入り')",
-            value: "お気に入り"
-          }
-        }),
+        _c(
+          "button",
+          {
+            staticClass: "twiit-fotter-btn btn btn-primary",
+            attrs: { onclick: "alert('お気に入り')" }
+          },
+          [
+            _c("i", { staticClass: "glyphicon glyphicon-search" }),
+            _vm._v("お気に入り\n                                    ")
+          ]
+        ),
         _vm._v(" "),
-        _c("input", {
-          attrs: {
-            type: "button",
-            onclick: "alert('メッセージ')",
-            value: "メッセージ"
-          }
-        })
+        _c(
+          "button",
+          {
+            staticClass: "twiit-fotter-btn-l btn btn-primary",
+            attrs: { onclick: "alert('DM')" }
+          },
+          [
+            _c("i", { staticClass: "glyphicon glyphicon-search" }),
+            _vm._v("DM\n                                    ")
+          ]
+        )
       ])
     ])
   }

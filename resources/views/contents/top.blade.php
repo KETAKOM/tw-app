@@ -2,5 +2,5 @@
 
 @section('content')
     <!-- ルートとマッチしたコンポーネントがここへ描画されます -->
-    <router-view :posts="{{$posts}}"></router-view>
+    <router-view :user_id="{{$user['user_id']}}" :posts="{{$posts}}"></router-view>
 @endsection

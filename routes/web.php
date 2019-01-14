@@ -15,6 +15,8 @@ Auth::routes();
 
 // この中はログインされている場合のみルーティングされる
 Route::group(['middleware' => ['auth']], function () {
-    //SPAにするので、ログインしていれば全てlayouts.appにルートを集約させる
+    //SPAにしたいンゴ
+    Route::get('/', 'HomeController@index')->where('any', '.*');
+
     Route::get('/{any}', 'HomeController@index')->where('any', '.*');
 });
