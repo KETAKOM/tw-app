@@ -28,7 +28,8 @@ class PostController extends Controller
     {
         $userId = $request->user_id;
         $posts = $this->post_repository->getFollowPostsByUserId($userId);
-        return $posts;
+
+        return response()->json(['posts' => $posts]);
     }
 
     /**
