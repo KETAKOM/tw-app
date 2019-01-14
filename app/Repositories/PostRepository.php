@@ -46,7 +46,7 @@ class PostRepository implements PostRepositoryInterface
             ->where('follows.from_follow_user_id', '=', $userId)
             ->orWhere('posts.user_id', '=', $userId)
             ->orderBy('posts.created_at', 'DESC')
-            ->paginate(40);
+            ->paginate(20);
     }
 
     /**
