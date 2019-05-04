@@ -39,8 +39,8 @@ RUN composer require predis/predis
 RUN curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
 RUN sudo yum install -y nodejs
 RUN npm install -y yarn
-RUN yarn
-RUN yarn add -D ts-loader@^3 typescript@3.0.3
+# RUN yarn
+# RUN yarn add -D ts-loader@^3 typescript@3.0.3
 
 #■ systemdを経由せずhttpdを直接起動する(イメージ起動の時に実行されるコマンド)
 #参考URL:https://blog.takekoshi.net/docker-centos7-httpd/

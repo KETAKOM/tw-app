@@ -22,7 +22,10 @@ use Illuminate\Http\Request;
 // });
 
 // Route::group(['middleware' => ['api']], function(){
+    // POST
     Route::get('/post/get', 'Api\PostController@get');
     Route::get('/post/store', 'Api\PostController@store');
+
+    // Follow
 // });
 

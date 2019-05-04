@@ -15,10 +15,10 @@ interface PostRepositoryInterface
     /**
      * ユーザーIDからフォローしている人と自分の呟きを時系列で取得
      *
-     * @var string $userId
+     * @var int $userId
      * @return object
      */
-    public function getFollowPostsByUserId($userId);
+    public function getFollowPostsByUserId(int $userId): object;
 
     /**
      * 呟きの作成

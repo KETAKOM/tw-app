@@ -13,7 +13,9 @@ class PostController extends Controller
      *
      * @return void
      */
-    public function __construct(PostRepositoryInterface $post_repository)
+    public function __construct(
+        PostRepositoryInterface $post_repository
+    )
     {
         // $this->middleware('auth');
 
