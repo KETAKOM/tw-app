@@ -29,3 +29,9 @@ use Illuminate\Http\Request;
     // Follow
 // });
 
+Route::get('/test', function(){
+    $user = App\Models\User::find(1);
+    $token = $user->createToken('token_for_user1')->accessToken;
+    return response()->json(['token' => $token]);
+});
+

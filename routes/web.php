@@ -18,6 +18,8 @@ Route::group(['middleware' => ['auth']], function () {
     //SPAにしたいンゴ
     Route::get('/', 'HomeController@index')->where('any', '.*');
 
+    Route::get('/info', 'infoController@index');
+
     Route::get('/userlist', 'UserController@list')->where('any', '.*');
 
     Route::get('/{any}', 'HomeController@index')->where('any', '.*');

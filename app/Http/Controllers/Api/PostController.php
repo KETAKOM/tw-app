@@ -17,8 +17,7 @@ class PostController extends Controller
         PostRepositoryInterface $post_repository
     )
     {
-        // $this->middleware('auth');
-
+        $this->middleware('auth');
         $this->post_repository = $post_repository;
     }
 
